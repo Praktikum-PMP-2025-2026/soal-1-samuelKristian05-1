@@ -2,7 +2,7 @@
 #include <math.h>
 
 #define kiri rusak[i-geserKiri]
-#define kanan rusak[i-geserKanan]
+#define kanan rusak[i+geserKanan]
 
 int main() {
     int N, sum;
@@ -19,6 +19,7 @@ int main() {
     }
     return rusak[N]; */
 
+    /* Buat array bener[] */
     int j = 0; /* index bener[] */
     for (int i = 0; i < N; i++) {
         if (rusak[i] != -1) {       /* valid */
@@ -30,22 +31,31 @@ int main() {
             /* obtain di kirinya yg valid */
             int geserKiri = 1;
             int geserKanan = 1;
-            while (kiri != -1) {       /* ok kiri valid */
-                if (kanan != -1) {    /* ok kanannya valid */
-                    bener[j] = floor(0.5 * (kiri+kanan));
-                    i += 1; 
-                    j += 1;                 
-                }
-            }
-            
+            while (kiri = -1) {       /* selama kiri ga valid, geser kiri lagi */
+                geserKiri += 1; 
+            }                         /* kiri valid */
+            while (kanan = -1) {      /* selama kanan ga valid, geser kanan lagi */
+                geserKanan += 1;
+            }                         /* insert ke bener[] */   
+            bener[j] = floor(0.5 * (kiri+kanan));
+            i += 1; 
+            j += 1;                 
+                           
         }
     }
+
+
+    /* Jumlahkan bener[] */
     sum = 0;
     int z = 0;
-    while (z < ) {
+    for (z = 0; z < j; z += 1) {
         sum += bener[j];
+        j += 1;
     }
+    /* OUTPUT */
+    printf("RECOVERED...\nMAX_SUM %d", sum);
 }
 
 // 6    5 -1 7 -1 -1 4
-// RECOVERED 5 6 7 5 4 4 MAX_SUM 31
+// RECOVERED 5 6 7 5 4 4
+// MAX_SUM 31
